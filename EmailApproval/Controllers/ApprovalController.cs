@@ -106,24 +106,33 @@ namespace EmailApproval.Controllers
 
             await cmd.ExecuteNonQueryAsync();
 
+            Response.Headers.Add("CARD-ACTION-STATUS", "Action completed successfully");
+
+            Response.Headers.Add("CARD-UPDATE-IN-BODY", "true");
+
             return Ok(new
             {
                 type = "AdaptiveCard",
                 version = "1.0",
-                body = new[]
+                schema = "http://adaptivecards.io/schemas/adaptive-card.json",
+                hideOriginalBody = true,
+                body = new object[]
                 {
-                new {
-                    type = "TextBlock",
-                    text = "✅ Request Approved",
-                    weight = "Bolder",
-                    size = "Medium"
+                    new
+                    {
+                        type = "TextBlock",
+                        text = "✅ Request Approved",
+                        weight = "Bolder",
+                        size = "Medium",
+                        color = "Good"
                     }
                 }
             });
         }
 
+
         [HttpPost("reject")]
-        public async Task<IActionResult> RejectCard([FromBody] ApprovalRequest request)
+        public async Task<IActionResult> RejectCard(ApprovalRequestDto request)
         {
             using var conn = GetConnection();
             await conn.OpenAsync();
@@ -138,17 +147,24 @@ namespace EmailApproval.Controllers
 
             await cmd.ExecuteNonQueryAsync();
 
+            Response.Headers.Add("CARD-ACTION-STATUS", "Action completed successfully");
+
+            Response.Headers.Add("CARD-UPDATE-IN-BODY", "true");
+
             return Ok(new
             {
                 type = "AdaptiveCard",
-                version = "1.4",
-                body = new[]
+                version = "1.0",
+                schema = "http://adaptivecards.io/schemas/adaptive-card.json",
+                hideOriginalBody = true,
+                body = new object[]
                 {
                     new {
                         type = "TextBlock",
                         text = "❌ Request Rejected",
                         weight = "Bolder",
-                        size = "Medium"
+                        size = "Medium",
+                        color = "Attention"
                     }
                 }
             });
