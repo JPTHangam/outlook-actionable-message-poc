@@ -204,7 +204,7 @@ namespace EmailApproval
                 type    = "Action.Http",
                 title   = "Approve",
                 method  = "POST",
-                url     = $"https://mariano-visualizable-congruously.ngrok-free.dev/api/approval/approve?token={token}",
+                url     = $"https://unwadeable-rolanda-overhostilely.ngrok-free.dev/api/approval/approve?token={token}",
                 headers = new[] { new { name = "Content-Type", value = "application/json" } },
                 body    = $"{{ \"ApprovalToken\": \"{token}\", \"Comments\": \"{{{{comments.value}}}}\" }}"
             },
@@ -212,7 +212,7 @@ namespace EmailApproval
                 type    = "Action.Http",
                 title   = "Reject",
                 method  = "POST",
-                url     = $"https://mariano-visualizable-congruously.ngrok-free.dev/api/approval/reject?token={token}",
+                url     = $"https://unwadeable-rolanda-overhostilely.ngrok-free.dev/api/approval/reject?token={token}",
                 headers = new[] { new { name = "Content-Type", value = "application/json" } },
                 body    = $"{{ \"ApprovalToken\": \"{token}\", \"Comments\": \"{{{{comments.value}}}}\" }}"
             }
